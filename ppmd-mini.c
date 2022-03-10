@@ -202,8 +202,7 @@ usage:	fputs("Usage: ppmid-mini [-d] [-k] [-c] [FILE]\n", stderr);
 	return 1;
     }
     if (fname) {
-	stdin = freopen(fname, "r", stdin);
-	if (!stdin) {
+	if (!freopen(fname, "r", stdin)) {
 	    fprintf(stderr, "ppmid-mini: cannot open %s\n", fname);
 	    return 1;
 	}
@@ -215,8 +214,7 @@ usage:	fputs("Usage: ppmid-mini [-d] [-k] [-c] [FILE]\n", stderr);
 	    return 1;
 	}
 	*dot = '\0';
-	stdout = freopen(fname, "w", stdout);
-	if (!stdout) {
+	if(!freopen(fname, "w", stdout)) {
 	    fprintf(stderr, "ppmid-mini: cannot open %s\n", fname);
 	    return 1;
 	}
@@ -227,8 +225,7 @@ usage:	fputs("Usage: ppmid-mini [-d] [-k] [-c] [FILE]\n", stderr);
 	char outname[len + 6];
 	memcpy(outname, fname, len);
 	memcpy(outname + len, ".ppmd", 6);
-	stdout = freopen(outname, "w", stdout);
-	if (!stdout) {
+	if(!freopen(outname, "w", stdout)) {
 	    fprintf(stderr, "ppmid-mini: cannot open %s\n", outname);
 	    return 1;
 	}
